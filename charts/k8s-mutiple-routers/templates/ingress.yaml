@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-frontend-ingress-new # Or your unique name
+  annotations:
+    # Remove the snippet annotation
+    # Use rewrite-target with $2 for Prefix path type
+    nginx.ingress.kubernetes.io/rewrite-target: /api-for-frontend/$2
+spec:
+  rules:
+  - host: apiforfrontend.com
+    http:
+      paths:
+      - path: /()(.*)
+        pathType: Prefix # Use Prefix type
+        backend:
+          service:
+            name: {{ .Values.app.name }}
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-backend-ingress-new # Or your unique name
+  annotations:
+    # Remove the snippet annotation
+    # Use rewrite-target with $2 for Prefix path type
+    nginx.ingress.kubernetes.io/rewrite-target: /api-for-backend/$2
+spec:
+  rules:
+  - host: apiforbackend.com
+    http:
+      paths:
+      - path: /()(.*)
+        pathType: Prefix # Use Prefix type
+        backend:
+          service:
+            name: {{ .Values.app.name }}
+            port:
+              number: 80

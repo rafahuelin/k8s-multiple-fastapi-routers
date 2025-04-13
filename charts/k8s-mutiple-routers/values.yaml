@@ -1,0 +1,10 @@
+app:
+  name: k8s-multiple-routers
+  image: k8s-multiple-routers:latest
+  port: 8000
+
+domains:
+  - host: apiforfrontend.com
+    pathPrefix: /api-for-frontend
+  - host: apiforbackend.com
+    pathPrefix: /api-for-backend
