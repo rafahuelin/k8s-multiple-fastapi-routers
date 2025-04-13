@@ -4,42 +4,7 @@ This project demonstrates how to deploy a single FastAPI application to Kubernet
 
 
 ### Result
-![Redirection working](docs/redirection-working.png)
-
-
-### Project setup and Request flowchart
-```mermaid
-graph TD
-    A[Developer] --> B(Build Docker Image Locally);
-    B --> C(Start Minikube);
-    C --> D(Enable Ingress Addon);
-    A --> E(Get Minikube IP);
-    E --> F(Update /etc/hosts);
-    A --> G(Set Docker Env to Minikube);
-    G --> H(Build Image Inside Minikube);
-    H --> I(Deploy App with Helm);
-    J[User] --> K["Send Request<br>(e.g., curl apiforfrontend.com/v1/hello)"];
-    F --> K;
-    K --> L(Request hits Minikube IP);
-    D --> L;
-    L --> M(Ingress Controller Receives Request);
-    I --> M;
-    M --> N["Route based on Host<br>(apiforfrontend.com)"];
-    N --> O["Rewrite Path<br>(/v1/hello -> /api-for-frontend/v1/hello)"];
-    O --> P(Forward to Service);
-    P --> Q(Service routes to Pod);
-    Q --> R(FastAPI App Receives Request);
-    R --> S["Match Route<br>(/api-for-frontend/v1/hello)"];
-    S --> T(Execute Handler Function);
-    T --> U(Generate Response);
-    U --> Q;
-    Q --> P;
-    P --> M;
-    M --> J;
-
-    style F fill:#ff4d00,stroke:#333,stroke-width:2px
-    style G fill:#ff4d00,stroke:#333,stroke-width:2px
-```
+![URL rewriting working](docs/url-rewriting-working.png)
 
 # Request sequence diagram
 
