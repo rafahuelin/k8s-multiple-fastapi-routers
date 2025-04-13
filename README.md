@@ -37,8 +37,8 @@ graph TD
     P --> M;
     M --> J;
 
-    style F fill:#f9f,stroke:#333,stroke-width:2px
-    style G fill:#f9f,stroke:#333,stroke-width:2px
+    style F fill:#ff4d00,stroke:#333,stroke-width:2px
+    style G fill:#ff4d00,stroke:#333,stroke-width:2px
 ```
 
 # Request sequence diagram
